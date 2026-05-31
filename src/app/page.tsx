@@ -5,6 +5,8 @@ const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 const REGISTER_GENERAL_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSeKo_v0afexd4sp2gNguq2SAVLF3OHItEv4gEgs0hfv6UabnQ/viewform?usp=dialog";
 
+const DISCORD_URL = "https://discord.com/invite/nanokarrin";
+
 type Tournament = {
   id: string;
   title: string;
@@ -21,7 +23,7 @@ const tournaments: Tournament[] = [
   {
     id: "piosenkowe",
     title: "Bitwy Piosenkowe",
-    tagline: "Drużynowe projekty piosenkowe — trzy rundy, pełen sezon.",
+    tagline: "Drużynowe projekty piosenkowe - trzy rundy, pełny sezon.",
     when: "Druga połowa lipca 2026",
     duration: "3 rundy × 2 miesiące, krótkie przerwy między rundami",
     format: "Drużynowe, do 7 osób w drużynie",
@@ -32,7 +34,7 @@ const tournaments: Tournament[] = [
   {
     id: "aktorskie",
     title: "Bitwy Aktorskie",
-    tagline: "One-shot dla aktorów — dwa tygodnie na nagrania, koniec dyskusji.",
+    tagline: "One-shot dla aktorów, dwa tygodnie na nagrania, a potem można świętować sukces!",
     when: "Koniec czerwca 2026",
     duration: "Jedna runda, dwa tygodnie na nagrania",
     format: "Pojedynczy uczestnicy, aktorzy",
@@ -47,11 +49,11 @@ const tickerWords = [
   "SCENKI",
   "WOKAL",
   "AKTORSTWO",
-  "ILUSTRACJA",
+  "ILUSTRACJE",
   "DRUŻYNY",
   "POJEDYNCZE STARCIA",
-  "PEER TO PEER",
-  "EKSPERCI",
+  "DUBBING",
+  "COVERY",
 ];
 
 export default function Home() {
@@ -65,12 +67,24 @@ export default function Home() {
             Bitwy Dubbingowe
           </span>
         </div>
-        <a
-          href="#turnieje"
-          className="hidden md:inline-flex items-center gap-2 font-display text-xs uppercase tracking-[0.18em] text-ink/80 hover:text-rose transition-colors"
-        >
-          <span>↓ przewiń do turniejów</span>
-        </a>
+        <div className="flex items-center gap-3 md:gap-5">
+          <a
+            href="#turnieje"
+            className="hidden md:inline-flex items-center gap-2 font-display text-xs uppercase tracking-[0.18em] text-ink/80 hover:text-rose transition-colors"
+          >
+            <span>↓ przewiń do turniejów</span>
+          </a>
+          <a
+            href={DISCORD_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-stamp inline-flex items-center gap-2 bg-paper text-ink px-3 py-2 font-display font-extrabold text-[10px] md:text-xs uppercase tracking-[0.18em] border-[2px] border-ink shadow-[4px_4px_0_var(--color-ink)]"
+            aria-label="Dołącz do Discorda NanoKarrin"
+          >
+            <DiscordIcon className="w-4 h-4" />
+            <span className="hidden sm:inline">Discord</span>
+          </a>
+        </div>
       </header>
 
       {/* === HERO === */}
@@ -108,7 +122,7 @@ export default function Home() {
                 drużyny i pojedynczy uczestnicy
               </span>{" "}
               ścierają się tworząc projekty dubbingowe. Piosenki, scenki,
-              wokal, aktorstwo, ilustracja — wszystko w jednym ringu.
+              wokal, aktorstwo, ilustracja - każdy znajdzie coś dla siebie.
             </p>
 
             <div
@@ -125,7 +139,7 @@ export default function Home() {
                 <span aria-hidden className="text-xl">→</span>
               </a>
               <span className="text-sm md:text-base text-ink/70 max-w-[260px] leading-tight">
-                Rejestracja ogólna — wymagana przed zapisem na konkretny turniej.
+                Rejestracja ogólna, wymagana przed zapisem na konkretny turniej. Nie zobowiązuje do udziału w żadnym turnieju.
               </span>
             </div>
           </div>
@@ -146,7 +160,7 @@ export default function Home() {
             <div className="relative z-10 animate-wobble">
               <Image
                 src={`${BASE_PATH}/mascot.png`}
-                alt="Maskotka Bitew Dubbingowych — postać w rękawicach bokserskich"
+                alt="Maskotka Bitew Dubbingowych — Karrin w rękawicach bokserskich"
                 width={520}
                 height={640}
                 priority
@@ -191,7 +205,7 @@ export default function Home() {
           <div className="md:col-span-8 text-lg md:text-xl leading-relaxed text-ink/85 space-y-5">
             <p>
               <strong className="font-display font-extrabold">Bitwy Dubbingowe</strong> to konkurs, w którym
-              biorą udział drużyny i pojedynczy uczestnicy — i ścierają się ze sobą tworząc projekty
+              biorą udział drużyny i pojedynczy uczestnicy i ścierają się ze sobą tworząc projekty
               dubbingowe.
             </p>
             <p>
@@ -229,8 +243,7 @@ export default function Home() {
               </h2>
             </div>
             <p className="max-w-md text-base md:text-lg text-ink/80">
-              Każdy turniej ma własny format, harmonogram i sposób oceniania. Najpierw rejestracja
-              ogólna, potem zapis na konkretny turniej.
+              Każdy turniej ma własny format, harmonogram i sposób oceniania. Żeby wziąć udział w turnieju, musisz się zarejestrować przez ogólny formularz.
             </p>
           </div>
 
@@ -249,7 +262,7 @@ export default function Home() {
             Gotowy/a na <span className="outlined-text">ring</span>?
           </h2>
           <p className="mt-6 max-w-xl mx-auto text-lg text-ink/80">
-            Zapisz się na bitwy ogólnie — to klucz, który otwiera wszystkie kolejne turnieje sezonu.
+            Zapisz się na bitwy - to klucz, który otwiera wszystkie kolejne turnieje.
           </p>
           <a
             href={REGISTER_GENERAL_URL}
@@ -260,6 +273,30 @@ export default function Home() {
             <span>Rejestracja ogólna</span>
             <span aria-hidden>↗</span>
           </a>
+
+          {/* Discord block — wider community */}
+          <div id="discord" className="mt-20 md:mt-24 max-w-2xl mx-auto bg-paper border-[3px] border-ink shadow-stamp p-7 md:p-9 relative scroll-mt-24">
+            <div className="absolute -top-4 left-6 px-3 py-1 bg-ink text-paper font-display text-[10px] uppercase tracking-[0.22em]">
+              Społeczność
+            </div>
+            <h3 className="font-display font-black text-2xl md:text-3xl leading-tight tracking-tight">
+              Dołącz do <span className="font-accent italic font-normal text-rose">NanoKarrin</span> na Discordzie
+            </h3>
+            <p className="mt-3 text-base md:text-lg text-ink/80 leading-snug">
+              Serwer obejmuje całą działalność grupy: fandubbing, projekty, konwenty, współpracę.
+              Bitwy Dubbingowe to tylko jedna z wielu rzeczy, które się tam dzieją.
+            </p>
+            <a
+              href={DISCORD_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-stamp mt-6 inline-flex items-center gap-3 bg-mint text-ink px-7 py-4 font-display font-extrabold uppercase tracking-wide text-base md:text-lg border-[3px] border-ink shadow-stamp"
+            >
+              <DiscordIcon className="w-6 h-6" />
+              <span>Dołącz na Discordzie</span>
+              <span aria-hidden>↗</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -269,7 +306,7 @@ export default function Home() {
             Bitwy Dubbingowe · Sezon 2026
           </div>
           <div className="text-xs md:text-sm text-paper/70 font-body">
-            Strona informacyjna · Polska scena dubbingowa
+            NanoKarrin
           </div>
         </div>
       </footer>
@@ -350,6 +387,19 @@ function Spec({ label, value }: { label: string; value: string }) {
   );
 }
 
+function DiscordIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="currentColor"
+      aria-hidden
+    >
+      <path d="M20.317 4.369A19.79 19.79 0 0 0 16.558 3a14.65 14.65 0 0 0-.69 1.387 18.27 18.27 0 0 0-5.487 0A12.85 12.85 0 0 0 9.69 3a19.74 19.74 0 0 0-3.762 1.37C2.078 9.046 1.045 13.604 1.561 18.094a19.93 19.93 0 0 0 6.073 3.04 14.51 14.51 0 0 0 1.226-1.963 12.78 12.78 0 0 1-1.928-.91c.162-.116.32-.237.473-.36 3.62 1.65 7.535 1.65 11.114 0 .155.123.313.244.474.36-.617.357-1.265.661-1.93.911a14.4 14.4 0 0 0 1.227 1.963 19.84 19.84 0 0 0 6.075-3.04c.604-5.197-1.039-9.71-4.048-13.726ZM8.62 15.397c-1.21 0-2.21-1.108-2.21-2.471 0-1.364.98-2.472 2.21-2.472 1.232 0 2.231 1.108 2.21 2.471 0 1.364-.98 2.472-2.21 2.472Zm6.76 0c-1.21 0-2.21-1.108-2.21-2.471 0-1.364.98-2.472 2.21-2.472 1.231 0 2.231 1.108 2.21 2.471 0 1.364-.979 2.472-2.21 2.472Z" />
+    </svg>
+  );
+}
+
 function SpinningSticker() {
   return (
     <svg
@@ -367,9 +417,9 @@ function SpinningSticker() {
       </defs>
       <circle cx="100" cy="100" r="92" fill="#01010e" />
       <circle cx="100" cy="100" r="58" fill="#cf5284" />
-      <text fill="#ffffff" fontFamily="var(--font-display), sans-serif" fontWeight="800" fontSize="18" letterSpacing="4">
+      <text fill="#ffffff" fontFamily="var(--font-display), sans-serif" fontWeight="800" fontSize="18" letterSpacing="5">
         <textPath href="#circlePath" startOffset="0">
-          BITWY · DUBBINGOWE · SEZON 2026 ·
+          BITWY · DUBBINGOWE · 2026 ·
         </textPath>
       </text>
       <text x="100" y="108" textAnchor="middle" fill="#ffffff" fontFamily="var(--font-display), sans-serif" fontWeight="900" fontSize="22">

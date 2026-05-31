@@ -36,6 +36,7 @@ export default function RootLayout({
     <html
       lang="pl"
       className={`${unbounded.variable} ${manrope.variable} ${instrumentSerif.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="min-h-full flex flex-col">{children}</body>
     </html>
