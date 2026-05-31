@@ -54,6 +54,9 @@ const tickerWords = [
   "POJEDYNCZE STARCIA",
   "DUBBING",
   "COVERY",
+  "REALIZACJA",
+  "TEKSTY",
+  "DIALOGI",
 ];
 
 export default function Home() {
@@ -122,7 +125,7 @@ export default function Home() {
                 drużyny i pojedynczy uczestnicy
               </span>{" "}
               ścierają się tworząc projekty dubbingowe. Piosenki, scenki,
-              wokal, aktorstwo, ilustracja - każdy znajdzie coś dla siebie.
+              wokal, aktorstwo, ilustracje, dialogi, tekściarstwo, realizacja - każdy znajdzie coś dla siebie.
             </p>
 
             <div
@@ -152,10 +155,6 @@ export default function Home() {
             </div>
             {/* mint blob */}
             <div className="absolute -z-0 right-2 top-6 w-44 h-44 md:w-56 md:h-56 rounded-full bg-mint blur-[1px] opacity-90 mix-blend-multiply" />
-            {/* spinning sticker */}
-            <div className="absolute -top-6 -left-2 md:top-2 md:-left-2 z-20 animate-spin-slow">
-              <SpinningSticker />
-            </div>
             {/* mascot */}
             <div className="relative z-10 animate-wobble">
               <Image
@@ -196,7 +195,7 @@ export default function Home() {
         <div className="max-w-[1100px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div className="md:col-span-4">
             <span className="font-display text-[11px] tracking-[0.3em] uppercase text-ink/60">
-              ❶ O konkursie
+              O konkursie
             </span>
             <h2 className="mt-3 font-display font-extrabold text-4xl md:text-5xl leading-[0.95] tracking-tight">
               Co to <span className="font-accent italic font-normal text-rose">właściwie</span> jest?
@@ -211,10 +210,10 @@ export default function Home() {
             <p>
               W obrębie bitew odbywają się różne turnieje, ukierunkowane do różnych grup: drużyn
               przygotowujących projekty piosenkowe, drużyn przygotowujących projekty scenkowe i
-              aktorskie, wokalistów, aktorów oraz ilustratorów.
+              aktorskie, wokalistów oraz aktorów.
             </p>
             <div className="pt-4 flex flex-wrap gap-2 font-display text-xs uppercase tracking-wider">
-              {["piosenki", "scenki", "wokal", "aktorstwo", "ilustracja"].map((tag) => (
+              {["piosenki", "scenki", "wokal", "aktorstwo", "ilustracje", "dialogi", "teksty", "realizacja"].map((tag) => (
                 <span
                   key={tag}
                   className="px-3 py-1.5 bg-paper border-[2px] border-ink rounded-full"
@@ -236,7 +235,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-14">
             <div>
               <span className="font-display text-[11px] tracking-[0.3em] uppercase text-ink/70">
-                ❷ Nadchodzące turnieje
+                Nadchodzące turnieje
               </span>
               <h2 className="mt-3 font-display font-black text-5xl md:text-7xl leading-[0.9] tracking-tight">
                 Wybierz <span className="font-accent italic font-normal">swój</span> ring.
@@ -400,31 +399,3 @@ function DiscordIcon({ className }: { className?: string }) {
   );
 }
 
-function SpinningSticker() {
-  return (
-    <svg
-      viewBox="0 0 200 200"
-      width="120"
-      height="120"
-      className="md:w-[150px] md:h-[150px]"
-      aria-hidden
-    >
-      <defs>
-        <path
-          id="circlePath"
-          d="M 100,100 m -78,0 a 78,78 0 1,1 156,0 a 78,78 0 1,1 -156,0"
-        />
-      </defs>
-      <circle cx="100" cy="100" r="92" fill="#01010e" />
-      <circle cx="100" cy="100" r="58" fill="#cf5284" />
-      <text fill="#ffffff" fontFamily="var(--font-display), sans-serif" fontWeight="800" fontSize="18" letterSpacing="5">
-        <textPath href="#circlePath" startOffset="0">
-          BITWY · DUBBINGOWE · 2026 ·
-        </textPath>
-      </text>
-      <text x="100" y="108" textAnchor="middle" fill="#ffffff" fontFamily="var(--font-display), sans-serif" fontWeight="900" fontSize="22">
-        ✦
-      </text>
-    </svg>
-  );
-}

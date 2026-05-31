@@ -62,11 +62,6 @@ body::before {
   to { transform: translateX(-50%); }
 }
 
-@keyframes tickerSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
 @keyframes riseIn {
   from { opacity: 0; transform: translateY(28px); }
   to { opacity: 1; transform: translateY(0); }
@@ -79,7 +74,6 @@ body::before {
 
 .animate-marquee { animation: marquee 28s linear infinite; }
 .animate-wobble { animation: wobble 6s ease-in-out infinite; }
-.animate-spin-slow { animation: tickerSpin 22s linear infinite; }
 .animate-rise { animation: riseIn 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) both; }
 .animate-pulse-glove { animation: pulseGlove 2.6s ease-in-out infinite; }
 
