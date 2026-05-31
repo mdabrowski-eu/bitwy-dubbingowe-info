@@ -22,9 +22,9 @@ const instrumentSerif = Instrument_Serif({
 });
 
 export const metadata: Metadata = {
-  title: "Bitwy Dubbingowe — konkurs dubbingowy",
+  title: "Bitwy Dubbingowe",
   description:
-    "Bitwy Dubbingowe to konkurs, w którym drużyny i pojedynczy uczestnicy ścierają się tworząc projekty dubbingowe. Piosenki, scenki, wokalistyka, aktorstwo, ilustracja.",
+    "Bitwy Dubbingowe to konkurs, w którym drużyny i pojedynczy uczestnicy ścierają się tworząc projekty dubbingowe. Piosenki, scenki, wokalistyka, aktorstwo, ilustracje, dialogi, tekściarstwo, realizacja.",
 };
 
 export default function RootLayout({
