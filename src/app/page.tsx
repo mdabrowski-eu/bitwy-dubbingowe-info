@@ -28,7 +28,7 @@ const tournaments: Tournament[] = [
     duration: "3 rundy × 2 miesiące, krótkie przerwy między rundami",
     format: "Drużynowe, do 7 osób w drużynie",
     judging: "Peer to peer (drużyny) + opcjonalni eksperci",
-    registerUrl: null,
+    registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfUNzFCykkbJ1kY39fGWB0P_V4navsLoMf9iMd--TMVXHn3zQ/viewform?usp=publish-editor",
     accent: "rose",
   },
   {
@@ -39,7 +39,7 @@ const tournaments: Tournament[] = [
     duration: "Jedna runda, dwa tygodnie na nagrania",
     format: "Pojedynczy uczestnicy, aktorzy",
     judging: "Peer to peer + eksperci",
-    registerUrl: null,
+    registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe0q-ZovSSVqRYYglSdchlKQd7u3U2DCjhvSpPGW6HtwWT5iQ/viewform?usp=dialog",
     accent: "mint",
   },
 ];
