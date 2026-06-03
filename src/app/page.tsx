@@ -1,7 +1,5 @@
 import Image from "next/image";
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
-
 const REGISTER_GENERAL_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSeKo_v0afexd4sp2gNguq2SAVLF3OHItEv4gEgs0hfv6UabnQ/viewform?usp=dialog";
 
@@ -158,7 +156,7 @@ export default function Home() {
             {/* mascot */}
             <div className="relative z-10 animate-wobble">
               <Image
-                src={`${BASE_PATH}/mascot.png`}
+                src="/mascot.png"
                 alt="Maskotka Bitew Dubbingowych — Karrin w rękawicach bokserskich"
                 width={520}
                 height={640}
