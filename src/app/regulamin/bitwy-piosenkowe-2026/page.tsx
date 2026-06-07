@@ -105,10 +105,9 @@ const regulationSections: RegulationSectionData[] = [
       <div className="space-y-4">
         <p>
           Bitwy to miejsce, w którym można poznać nowych ludzi, nauczyć się
-          nowych umiejętności, rozwinąć stare i stworzyć świetne projekty. Dla
-          każdego jedne z tych rzeczy mogą być ważniejsze od innych, ale wszyscy
-          uczestnicy powinni zawsze dążyć do uczciwej rywalizacji i życzliwości
-          wobec współzawodników.
+          nowych umiejętności, rozwinąć te stare i stworzyć świetne projekty.
+          Niezależnie od tego, czy zależy Ci bardziej na wygranej, czy na nauce,
+          pamiętaj o najważniejszym: bądź fair i szanuj innych zawodników.
         </p>
         <p>
           Bitwy to projekt społecznościowy i będzie tak dobry, jak społeczność,
@@ -165,8 +164,8 @@ const regulationSections: RegulationSectionData[] = [
           <SubsectionTitle>Prace nad projektami</SubsectionTitle>
           <p>
             Drużyny pracują nad projektami od momentu ogłoszenia tematu i
-            parowań aż do upłynięcia terminu oddawania projektów. Oddają projekt
-            w sposób opisany przez organizatora.
+            parowań, aż do upłynięcia terminu oddawania projektów. Oddają
+            projekt w sposób opisany przez organizatora.
           </p>
           <p>
             Drużyny muszą także oddać skrót projektu, trwający od 15 do 30
@@ -389,6 +388,10 @@ const regulationSections: RegulationSectionData[] = [
     title: "Nagrody",
     content: (
       <div className="grid gap-5">
+        <p>
+          Nagrodami w turnieju są tytuły powiązane z rangami na serwerze Discord
+          NanoKarrin.
+        </p>
         <Award title="Zwycięzca Turnieju">
           Drużyna, która osiągnęła największą liczbę dużych punktów.
         </Award>

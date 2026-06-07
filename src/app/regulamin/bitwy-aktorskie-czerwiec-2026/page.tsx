@@ -101,9 +101,10 @@ const regulationSections: RegulationSectionData[] = [
       <div className="space-y-4">
         <p>
           Bitwy to miejsce, w którym można poznać nowych ludzi, nauczyć się
-          nowych umiejętności, rozwinąć stare i stworzyć dobre projekty. W
-          Bitwach Aktorskich najważniejsza jest praca nad aktorstwem: świadome
-          granie, słuchanie feedbacku i szacunek wobec innych uczestników.
+          nowych umiejętności, rozwinąć te stare i stworzyć świetne projekty. W
+          Bitwach Aktorskich (jak można się domyślić) najważniejsza jest praca
+          nad aktorstwem: świadome granie, słuchanie feedbacku i szacunek wobec
+          innych uczestników.
         </p>
         <p>
           Wszyscy uczestnicy powinni dążyć do uczciwej rywalizacji i życzliwości
@@ -150,7 +151,7 @@ const regulationSections: RegulationSectionData[] = [
           <p>
             Przed rozpoczęciem turnieju organizatorzy publikują harmonogram,
             termin oddawania nagrań oraz trzy gotowe scenki, z których można
-            wybrać zadanie.
+            wybrać jedną.
           </p>
         </div>
         <div className="space-y-3">
@@ -276,55 +277,6 @@ const regulationSections: RegulationSectionData[] = [
   },
   {
     number: "8",
-    title: "Materiały niestworzone przez uczestnika",
-    content: (
-      <div className="space-y-4">
-        <p>
-          W Bitwach Aktorskich podstawą projektu jest nagranie własnego głosu i
-          własnej interpretacji postaci. Używanie materiałów niestworzonych przez
-          uczestnika jest dozwolone tylko wtedy, gdy nie zastępuje pracy, która
-          ma być oceniana.
-        </p>
-        <ol className="list-decimal pl-6 space-y-3">
-          <li>
-            Uczestnik, oddając projekt, powinien odnotować istotne użyte
-            materiały lub narzędzia, aby oceniający wiedzieli, co zostało
-            wykonane przez niego, a co nie.
-          </li>
-          <li>
-            Materiały nie mogły powstać specjalnie po to, aby zastąpić pracę
-            aktorską uczestnika w tej bitwie.
-          </li>
-        </ol>
-        <p>
-          Użycie materiałów niestworzonych przez uczestnika może prowadzić do
-          obniżonej punktacji, jeśli oceniający uzna, że utrudnia to ocenę
-          rzeczywistej pracy aktorskiej lub technicznej.
-        </p>
-      </div>
-    ),
-  },
-  {
-    number: "9",
-    title: "Korzystanie z generatywnego AI",
-    content: (
-      <div className="space-y-4">
-        <p>
-          Użycie generatywnego AI musi zostać odnotowane przez uczestnika
-          oddającego projekt. Użycie AI nie jest z góry zakazane, ale nie może
-          zastępować nagrania głosu, gry aktorskiej ani interpretacji
-          uczestnika.
-        </p>
-        <p>
-          Uczestnicy i eksperci mają prawo ocenić wpływ użycia AI zgodnie z
-          własnym sumieniem. Wszystkie wątpliwości można zgłaszać
-          organizatorom.
-        </p>
-      </div>
-    ),
-  },
-  {
-    number: "10",
     title: "Przewinienia i kary",
     content: (
       <div className="space-y-7">
@@ -352,7 +304,7 @@ const regulationSections: RegulationSectionData[] = [
     ),
   },
   {
-    number: "11",
+    number: "9",
     title: "Nieoddane projekty",
     content: (
       <div className="space-y-4">
@@ -369,10 +321,14 @@ const regulationSections: RegulationSectionData[] = [
     ),
   },
   {
-    number: "12",
+    number: "10",
     title: "Nagrody",
     content: (
       <div className="grid gap-5">
+        <p>
+          Nagrodami w turnieju są tytuły powiązane z rangami na serwerze Discord
+          NanoKarrin.
+        </p>
         <Award title="Zwycięzca Turnieju">
           Uczestnik, który osiągnął najwyższy wynik w rankingu końcowym.
         </Award>
@@ -388,7 +344,7 @@ const regulationSections: RegulationSectionData[] = [
     ),
   },
   {
-    number: "13",
+    number: "11",
     title: "Promocja w mediach społecznościowych",
     content: (
       <div className="space-y-4">
@@ -406,7 +362,7 @@ const regulationSections: RegulationSectionData[] = [
     ),
   },
   {
-    number: "14",
+    number: "12",
     title: "Zmiany w regulaminie",
     content: (
       <div className="space-y-4">
