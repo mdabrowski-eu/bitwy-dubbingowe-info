@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const REGISTER_GENERAL_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLSeKo_v0afexd4sp2gNguq2SAVLF3OHItEv4gEgs0hfv6UabnQ/viewform?usp=dialog";
@@ -14,6 +15,7 @@ type Tournament = {
   format: string;
   judging: string;
   registerUrl: string | null;
+  regulationUrl: string;
   accent: "rose" | "mint";
 };
 
@@ -27,6 +29,7 @@ const tournaments: Tournament[] = [
     format: "Drużynowe, do 7 osób w drużynie",
     judging: "Peer to peer (drużyny) + opcjonalni eksperci",
     registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfUNzFCykkbJ1kY39fGWB0P_V4navsLoMf9iMd--TMVXHn3zQ/viewform?usp=publish-editor",
+    regulationUrl: "/regulamin/bitwy-piosenkowe-2026",
     accent: "rose",
   },
   {
@@ -38,6 +41,7 @@ const tournaments: Tournament[] = [
     format: "Pojedynczy uczestnicy, aktorzy",
     judging: "Peer to peer + eksperci",
     registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe0q-ZovSSVqRYYglSdchlKQd7u3U2DCjhvSpPGW6HtwWT5iQ/viewform?usp=dialog",
+    regulationUrl: "/regulamin/bitwy-aktorskie-czerwiec-2026",
     accent: "mint",
   },
 ];
@@ -351,7 +355,7 @@ function TournamentCard({
         <Spec label="Ocenianie" value={tournament.judging} />
       </dl>
 
-      <div className="mt-auto pt-2">
+      <div className="mt-auto pt-2 flex flex-col gap-3">
         {tournament.registerUrl ? (
           <a
             href={tournament.registerUrl}
@@ -368,6 +372,13 @@ function TournamentCard({
             <span aria-hidden>···</span>
           </div>
         )}
+        <Link
+          href={tournament.regulationUrl}
+          className="inline-flex items-center justify-center gap-2 font-display font-extrabold text-xs uppercase tracking-[0.18em] text-ink/70 hover:text-ink transition-colors py-1"
+        >
+          <span>Czytaj regulamin</span>
+          <span aria-hidden>→</span>
+        </Link>
       </div>
     </article>
   );
