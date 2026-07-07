@@ -8,6 +8,7 @@ const DISCORD_URL = "https://discord.com/invite/nanokarrin";
 
 type Tournament = {
   id: string;
+  badge: string;
   title: string;
   tagline: string;
   when: string;
@@ -16,32 +17,36 @@ type Tournament = {
   judging: string;
   registerUrl: string | null;
   regulationUrl: string;
+  guideUrl?: string;
   accent: "rose" | "mint";
 };
 
 const tournaments: Tournament[] = [
   {
     id: "piosenkowe",
+    badge: "bd11 - piosenkowe 2026",
     title: "Bitwy Piosenkowe",
     tagline: "Drużynowe projekty piosenkowe - trzy rundy, pełny sezon.",
     when: "Druga połowa lipca 2026",
     duration: "3 rundy × 2 miesiące, krótkie przerwy między rundami",
     format: "Drużynowe, do 7 osób w drużynie",
-    judging: "Peer to peer (drużyny) + opcjonalni eksperci",
+    judging: "Peer-to-peer (drużyny) + opcjonalni eksperci",
     registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSfUNzFCykkbJ1kY39fGWB0P_V4navsLoMf9iMd--TMVXHn3zQ/viewform?usp=publish-editor",
     regulationUrl: "/regulamin/bitwy-piosenkowe-2026",
     accent: "rose",
   },
   {
     id: "aktorskie",
+    badge: "bd12 - aktorskie 06.2026",
     title: "Bitwy Aktorskie",
     tagline: "One-shot dla aktorów, dwa tygodnie na nagrania, a potem można świętować sukces!",
     when: "Koniec czerwca 2026",
     duration: "Jedna runda, dwa tygodnie na nagrania",
     format: "Pojedynczy uczestnicy, aktorzy",
-    judging: "Peer to peer + eksperci",
+    judging: "Peer-to-peer + eksperci",
     registerUrl: "https://docs.google.com/forms/d/e/1FAIpQLSe0q-ZovSSVqRYYglSdchlKQd7u3U2DCjhvSpPGW6HtwWT5iQ/viewform?usp=dialog",
     regulationUrl: "/regulamin/bitwy-aktorskie-czerwiec-2026",
+    guideUrl: "/przewodnik/bitwy-aktorskie-czerwiec-2026",
     accent: "mint",
   },
 ];
@@ -126,7 +131,7 @@ export default function Home() {
               <span className="font-accent italic text-rose text-2xl md:text-3xl">
                 drużyny i pojedynczy uczestnicy
               </span>{" "}
-              ścierają się tworząc projekty dubbingowe. Piosenki, scenki,
+              ścierają się, tworząc projekty dubbingowe. Piosenki, scenki,
               wokal, aktorstwo, ilustracje, dialogi, tekściarstwo, realizacja - każdy znajdzie coś dla siebie.
             </p>
 
@@ -206,7 +211,7 @@ export default function Home() {
           <div className="md:col-span-8 text-lg md:text-xl leading-relaxed text-ink/85 space-y-5">
             <p>
               <strong className="font-display font-extrabold">Bitwy Dubbingowe</strong> to konkurs, w którym
-              biorą udział drużyny i pojedynczy uczestnicy i ścierają się ze sobą tworząc projekty
+              biorą udział drużyny i pojedynczy uczestnicy i ścierają się ze sobą, tworząc projekty
               dubbingowe.
             </p>
             <p>
@@ -249,8 +254,8 @@ export default function Home() {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {tournaments.map((t, idx) => (
-              <TournamentCard key={t.id} tournament={t} index={idx} />
+            {tournaments.map((t) => (
+              <TournamentCard key={t.id} tournament={t} />
             ))}
           </div>
         </div>
@@ -260,7 +265,7 @@ export default function Home() {
       <section className="px-6 md:px-10 py-20 md:py-28">
         <div className="max-w-[1100px] mx-auto text-center">
           <h2 className="font-display font-black text-5xl md:text-7xl leading-[0.92] tracking-tight">
-            Gotowy/a na <span className="outlined-text">ring</span>?
+            Gotowi na <span className="outlined-text">ring</span>?
           </h2>
           <p className="mt-6 max-w-xl mx-auto text-lg text-ink/80">
             Zapisz się na bitwy - to klucz, który otwiera wszystkie kolejne turnieje.
@@ -317,10 +322,8 @@ export default function Home() {
 
 function TournamentCard({
   tournament,
-  index,
 }: {
   tournament: Tournament;
-  index: number;
 }) {
   const accentBg = tournament.accent === "rose" ? "bg-rose" : "bg-sky";
   const accentText = tournament.accent === "rose" ? "text-paper" : "text-ink";
@@ -335,7 +338,7 @@ function TournamentCard({
         <div
           className={`px-4 py-2 ${accentBg} ${accentText} border-[3px] border-ink font-display text-xs uppercase tracking-wider`}
         >
-          turniej {String(index + 1).padStart(2, "0")}
+          {tournament.badge}
         </div>
       </div>
 
@@ -349,7 +352,7 @@ function TournamentCard({
       </header>
 
       <dl className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm md:text-base">
-        <Spec label="Termin" value={tournament.when} />
+        <Spec label="Termin rozpoczęcia" value={tournament.when} />
         <Spec label="Czas trwania" value={tournament.duration} />
         <Spec label="Format" value={tournament.format} />
         <Spec label="Ocenianie" value={tournament.judging} />
@@ -372,13 +375,24 @@ function TournamentCard({
             <span aria-hidden>···</span>
           </div>
         )}
-        <Link
-          href={tournament.regulationUrl}
-          className="inline-flex items-center justify-center gap-2 font-display font-extrabold text-xs uppercase tracking-[0.18em] text-ink/70 hover:text-ink transition-colors py-1"
-        >
-          <span>Czytaj regulamin</span>
-          <span aria-hidden>→</span>
-        </Link>
+        <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
+          <Link
+            href={tournament.regulationUrl}
+            className="inline-flex items-center justify-center gap-2 font-display font-extrabold text-xs uppercase tracking-[0.18em] text-ink/70 hover:text-ink transition-colors py-1"
+          >
+            <span>Czytaj regulamin</span>
+            <span aria-hidden>→</span>
+          </Link>
+          {tournament.guideUrl && (
+            <Link
+              href={tournament.guideUrl}
+              className="inline-flex items-center justify-center gap-2 font-display font-extrabold text-xs uppercase tracking-[0.18em] text-ink/70 hover:text-ink transition-colors py-1"
+            >
+              <span>Jak nagrywać</span>
+              <span aria-hidden>→</span>
+            </Link>
+          )}
+        </div>
       </div>
     </article>
   );
