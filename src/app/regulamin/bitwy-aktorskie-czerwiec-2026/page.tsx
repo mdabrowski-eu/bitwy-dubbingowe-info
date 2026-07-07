@@ -77,7 +77,7 @@ const regulationSections: RegulationSectionData[] = [
     content: (
       <div className="space-y-4">
         <p>
-          Bitwy Aktorskie Czerwiec 2026 to indywidualny konkurs aktorski
+          Bitwy Aktorskie Czerwiec-Lipiec 2026 to indywidualny konkurs aktorski
           organizowany w ramach Bitew Dubbingowych. Turniej ma formę one-shot:
           odbywa się tylko jedna runda, bez parowania i bez dalszych etapów.
         </p>
@@ -381,9 +381,9 @@ const regulationSections: RegulationSectionData[] = [
 ];
 
 export const metadata: Metadata = {
-  title: "Regulamin Bitew Aktorskich Czerwiec 2026 — Bitwy Dubbingowe",
+  title: "Regulamin Bitew Aktorskich Czerwiec-Lipiec 2026 — Bitwy Dubbingowe",
   description:
-    "Regulamin turnieju Bitwy Aktorskie Czerwiec 2026. One-shot dla aktorów, jedna runda, peer to peer + eksperci.",
+    "Regulamin turnieju Bitwy Aktorskie Czerwiec-Lipiec 2026. One-shot dla aktorów, jedna runda, peer to peer + eksperci.",
 };
 
 export default function RegulaminAktorskie(): ReactElement {
@@ -445,7 +445,7 @@ function Intro(): ReactElement {
       <h1 className="font-display font-black text-4xl md:text-6xl leading-[0.9] tracking-tight text-ink">
         Regulamin Bitew <span className="outlined-text">Aktorskich</span>
         <br />
-        <span className="text-3xl md:text-5xl">Czerwiec 2026</span>
+        <span className="text-3xl md:text-5xl">Czerwiec-Lipiec 2026</span>
       </h1>
 
       <p className="mt-6 text-lg md:text-xl text-ink/80 font-accent italic">

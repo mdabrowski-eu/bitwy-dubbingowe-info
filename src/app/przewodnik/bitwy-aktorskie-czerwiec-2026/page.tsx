@@ -39,9 +39,9 @@ type FormatCardProps = ChildrenProps & {
 };
 
 export const metadata: Metadata = {
-  title: "Jak nagrywać — Bitwy Aktorskie Czerwiec 2026 — Bitwy Dubbingowe",
+  title: "Jak nagrywać — Bitwy Aktorskie Czerwiec-Lipiec 2026 — Bitwy Dubbingowe",
   description:
-    "Przewodnik praktyczny po Bitwach Aktorskich Czerwiec 2026: wybór scenki i postaci, materiały, co oceniamy oraz jak oddać nagranie (wideo lub mp3).",
+    "Przewodnik praktyczny po Bitwach Aktorskich Czerwiec-Lipiec 2026: wybór scenki i postaci, materiały, co oceniamy oraz jak oddać nagranie (wideo lub mp3).",
 };
 
 export default function PrzewodnikAktorskie(): ReactElement {
