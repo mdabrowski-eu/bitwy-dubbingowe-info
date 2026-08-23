@@ -6,6 +6,10 @@ const REGISTER_GENERAL_URL =
 
 const DISCORD_URL = "https://discord.com/invite/nanokarrin";
 
+// TODO: replace with actual idea form URL when ready
+const IDEA_FORM_URL =
+  "https://docs.google.com/forms/d/e/1FAIpQLSeKo_v0afexd4sp2gNguq2SAVLF3OHItEv4gEgs0hfv6UabnQ/viewform?usp=dialog";
+
 type Tournament = {
   id: string;
   badge: string;
@@ -16,10 +20,11 @@ type Tournament = {
   format: string;
   judging: string;
   registerUrl: string | null;
-  regulationUrl: string;
+  regulationUrl: string | null;
   guideUrl?: string;
   accent: "rose" | "mint";
   closed?: boolean;
+  ctaLabel?: string;
 };
 
 const tournaments: Tournament[] = [
@@ -50,6 +55,20 @@ const tournaments: Tournament[] = [
     guideUrl: "/przewodnik/bitwy-aktorskie-czerwiec-2026",
     accent: "mint",
     closed: true,
+  },
+  {
+    id: "twoja-idea",
+    badge: "bd?? — co dalej?",
+    title: "Bitwy… Twoje!",
+    tagline: "Nie zdecydowaliśmy jeszcze - to zależy od Ciebie. Zgłoś pomysł i może to Twoja wizja trafi na ring!",
+    when: "Kto to wie",
+    duration: "Ty możesz zdecydować",
+    format: "Zobaczymy",
+    judging: "Zobaczymy",
+    registerUrl: IDEA_FORM_URL,
+    regulationUrl: null,
+    accent: "rose",
+    ctaLabel: "Zgłoś swój pomysł",
   },
 ];
 
@@ -376,7 +395,7 @@ function TournamentCard({
             rel="noopener noreferrer"
             className={`btn-stamp inline-flex items-center gap-3 ${accentBg} ${accentText} px-6 py-4 font-display font-extrabold uppercase tracking-wide text-base border-[3px] border-ink shadow-stamp w-full justify-center`}
           >
-            <span>Zapisz się — {tournament.title}</span>
+            <span>{tournament.ctaLabel ?? `Zapisz się — ${tournament.title}`}</span>
             <span aria-hidden>→</span>
           </a>
         ) : closed ? (
@@ -394,13 +413,15 @@ function TournamentCard({
           </div>
         )}
         <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-1">
-          <Link
-            href={tournament.regulationUrl}
-            className="inline-flex items-center justify-center gap-2 font-display font-extrabold text-xs uppercase tracking-[0.18em] text-ink/70 hover:text-ink transition-colors py-1"
-          >
-            <span>Czytaj regulamin</span>
-            <span aria-hidden>→</span>
-          </Link>
+          {tournament.regulationUrl && (
+            <Link
+              href={tournament.regulationUrl}
+              className="inline-flex items-center justify-center gap-2 font-display font-extrabold text-xs uppercase tracking-[0.18em] text-ink/70 hover:text-ink transition-colors py-1"
+            >
+              <span>Czytaj regulamin</span>
+              <span aria-hidden>→</span>
+            </Link>
+          )}
           {tournament.guideUrl && (
             <Link
               href={tournament.guideUrl}
