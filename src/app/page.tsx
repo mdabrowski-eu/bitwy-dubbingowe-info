@@ -19,6 +19,7 @@ type Tournament = {
   regulationUrl: string;
   guideUrl?: string;
   accent: "rose" | "mint";
+  closed?: boolean;
 };
 
 const tournaments: Tournament[] = [
@@ -48,6 +49,7 @@ const tournaments: Tournament[] = [
     regulationUrl: "/regulamin/bitwy-aktorskie-czerwiec-2026",
     guideUrl: "/przewodnik/bitwy-aktorskie-czerwiec-2026",
     accent: "mint",
+    closed: true,
   },
 ];
 
@@ -325,13 +327,14 @@ function TournamentCard({
 }: {
   tournament: Tournament;
 }) {
+  const { closed } = tournament;
   const accentBg = tournament.accent === "rose" ? "bg-rose" : "bg-sky";
   const accentText = tournament.accent === "rose" ? "text-paper" : "text-ink";
   const stamp =
     tournament.accent === "rose" ? "shadow-stamp" : "shadow-stamp-rose";
   return (
     <article
-      className={`relative bg-paper border-[3px] border-ink ${stamp} p-7 md:p-9 flex flex-col gap-6`}
+      className={`relative bg-paper border-[3px] border-ink ${stamp} p-7 md:p-9 flex flex-col gap-6 ${closed ? "opacity-60 grayscale" : ""}`}
     >
       {/* corner badge */}
       <div className="absolute -top-5 -right-5 rotate-6">
@@ -341,6 +344,13 @@ function TournamentCard({
           {tournament.badge}
         </div>
       </div>
+      {closed && (
+        <div className="absolute top-5 left-5 z-10">
+          <span className="inline-flex items-center gap-2 px-3 py-1.5 bg-ink/80 text-paper font-display text-[10px] tracking-[0.22em] uppercase rounded">
+            Zapisy zamknięte
+          </span>
+        </div>
+      )}
 
       <header>
         <h3 className="font-display font-black text-3xl md:text-4xl leading-[0.95] tracking-tight">
@@ -359,7 +369,7 @@ function TournamentCard({
       </dl>
 
       <div className="mt-auto pt-2 flex flex-col gap-3">
-        {tournament.registerUrl ? (
+        {tournament.registerUrl && !closed ? (
           <a
             href={tournament.registerUrl}
             target="_blank"
@@ -369,6 +379,14 @@ function TournamentCard({
             <span>Zapisz się — {tournament.title}</span>
             <span aria-hidden>→</span>
           </a>
+        ) : closed ? (
+          <div
+            aria-disabled
+            className="inline-flex items-center gap-3 bg-ink/10 text-ink/40 px-6 py-4 font-display font-extrabold uppercase tracking-wide text-base border-[3px] border-ink/20 w-full justify-center cursor-not-allowed"
+          >
+            <span>Zapisy zamknięte</span>
+            <span aria-hidden>🔒</span>
+          </div>
         ) : (
           <div className="inline-flex items-center gap-3 bg-paper text-ink/70 px-6 py-4 font-display font-extrabold uppercase tracking-wide text-base border-[3px] border-dashed border-ink/40 w-full justify-center">
             <span>Link rejestracyjny — wkrótce</span>
