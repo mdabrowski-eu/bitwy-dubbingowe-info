@@ -30,7 +30,7 @@ export default function RankingiPage(): ReactElement {
 
         <p className="mt-6 max-w-2xl text-lg md:text-xl text-ink/80 leading-snug">
           Rankingi liczone na żywo z systemu rozgrywek: ranking ELO
-          uczestników oraz wyniki poszczególnych turniejów.{" "}
+          uczestników, wyniki sezonowe oraz wyniki poszczególnych turniejów.{" "}
           <span className="font-accent italic text-rose text-xl md:text-2xl">
             ELO rośnie tylko po zakończonych starciach.
           </span>

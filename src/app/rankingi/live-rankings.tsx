@@ -32,10 +32,33 @@ type Jam = {
   rankings: RankEntry[];
 };
 
+type SeriesRoundJam = {
+  id: string;
+  name: string;
+  ranking_method: "win_loss" | "raw_score";
+  pairing_type: "team_1v1" | "team_ffa" | "participant_1v1" | "participant_ffa";
+};
+
+type SeriesRankEntry = {
+  entity_id: string;
+  name: string;
+  is_team: boolean;
+  total: number | null;
+  rounds: Array<number | null>;
+};
+
+type SeriesEntry = {
+  id: string;
+  name: string;
+  description: string | null;
+  jams: SeriesRoundJam[];
+  rankings: SeriesRankEntry[];
+};
+
 type LoadState =
   | { kind: "loading" }
   | { kind: "error" }
-  | { kind: "ready"; jams: Jam[]; elo: EloEntry[] };
+  | { kind: "ready"; jams: Jam[]; elo: EloEntry[]; series: SeriesEntry[] };
 
 function formatNumber(value: number): string {
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
@@ -56,15 +79,22 @@ export function LiveRankings({ apiUrl }: { apiUrl: string }): ReactElement {
 
     async function load(): Promise<void> {
       try {
-        const [jamsRes, eloRes] = await Promise.all([
+        const [jamsRes, eloRes, seriesRes] = await Promise.all([
           fetch(`${apiUrl}/public/jams`, { cache: "no-store" }),
           fetch(`${apiUrl}/public/elo-ranking`, { cache: "no-store" }),
+          fetch(`${apiUrl}/public/series`, { cache: "no-store" }),
         ]);
-        if (!jamsRes.ok || !eloRes.ok) throw new Error("API error");
+        if (!jamsRes.ok || !eloRes.ok || !seriesRes.ok) throw new Error("API error");
         const jamsJson = (await jamsRes.json()) as { data: Jam[] };
         const eloJson = (await eloRes.json()) as { data: EloEntry[] };
+        const seriesJson = (await seriesRes.json()) as { data: SeriesEntry[] };
         if (!cancelled) {
-          setState({ kind: "ready", jams: jamsJson.data, elo: eloJson.data });
+          setState({
+            kind: "ready",
+            jams: jamsJson.data,
+            elo: eloJson.data,
+            series: seriesJson.data,
+          });
         }
       } catch {
         if (!cancelled) setState({ kind: "error" });
@@ -101,7 +131,7 @@ export function LiveRankings({ apiUrl }: { apiUrl: string }): ReactElement {
     );
   }
 
-  const { jams, elo } = state;
+  const { jams, elo, series } = state;
 
   return (
     <div className="mt-14 space-y-14">
@@ -179,6 +209,82 @@ export function LiveRankings({ apiUrl }: { apiUrl: string }): ReactElement {
           </div>
         )}
       </section>
+
+      {/* === SERIES RANKINGS === */}
+      {series
+        .filter((s) => s.jams.length > 0 && s.rankings.length > 0)
+        .map((s, seriesIndex) => {
+          const accent = seriesIndex % 2 === 0 ? "bg-sky" : "bg-mint";
+          const stamp = seriesIndex % 2 === 0 ? "shadow-stamp" : "shadow-stamp-rose";
+          const isTeamSeries = s.jams.some((j) => j.pairing_type.startsWith("team"));
+          return (
+            <section key={s.id}>
+              <SectionHeading
+                kicker={isTeamSeries ? "rozgrywki sezonowe — drużyny" : "rozgrywki sezonowe — uczestnicy"}
+                title={s.name}
+                note="Suma punktów ze wszystkich zakończonych rund. Kolumny rund pokażą się po dodaniu kolejnych rund do rozgrywek."
+              />
+              <div className={`bg-paper border-[3px] border-ink ${stamp} overflow-x-auto`}>
+                <table className="w-full text-sm md:text-base">
+                  <thead>
+                    <tr className={`border-b-[3px] border-ink ${accent} text-left`}>
+                      <th className="px-3 md:px-4 py-3 font-display text-[10px] md:text-xs uppercase tracking-[0.2em]">
+                        #
+                      </th>
+                      <th className="px-3 md:px-4 py-3 font-display text-[10px] md:text-xs uppercase tracking-[0.2em]">
+                        {isTeamSeries ? "Drużyna" : "Uczestnik"}
+                      </th>
+                      {s.jams.map((j, i) => (
+                        <th
+                          key={j.id}
+                          className="px-3 md:px-4 py-3 font-display text-[10px] md:text-xs uppercase tracking-[0.15em] text-right"
+                          title={`${j.name} (${j.ranking_method === "win_loss" ? "punkty" : "suma ocen"})`}
+                        >
+                          R{i + 1}
+                        </th>
+                      ))}
+                      <th className="px-3 md:px-4 py-3 font-display text-[10px] md:text-xs uppercase tracking-[0.2em] text-right">
+                        Suma
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {s.rankings.map((entry, index) => (
+                      <tr
+                        key={entry.entity_id}
+                        className={`border-b-2 border-ink/15 last:border-b-0 ${index < 3 ? "bg-rose/10" : ""}`}
+                      >
+                        <td className="px-3 md:px-4 py-3 font-display font-extrabold">
+                          {medalFor(index) ?? `#${index + 1}`}
+                        </td>
+                        <td className="px-3 md:px-4 py-3 font-body font-semibold text-ink break-words max-w-[220px] md:max-w-none">
+                          {entry.name}
+                        </td>
+                        {entry.rounds.map((value, i) => (
+                          <td
+                            key={`${entry.entity_id}-${s.jams[i]?.id ?? i}`}
+                            className={`px-3 md:px-4 py-3 text-right font-body ${
+                              value == null ? "text-ink/40" : "text-ink/75"
+                            }`}
+                          >
+                            {value == null ? "—" : formatNumber(value)}
+                          </td>
+                        ))}
+                        <td className="px-3 md:px-4 py-3 text-right font-display font-extrabold">
+                          {entry.total == null ? "—" : formatNumber(entry.total)}
+                        </td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              <p className="mt-2 text-xs md:text-sm text-ink/60 font-body">
+                Każda runda wnosi swój decydujący wynik (punkty za zwycięstwa
+                lub suma ocen); &bdquo;—&rdquo; oznacza rundę jeszcze nierozstrzygniętą.
+              </p>
+            </section>
+          );
+        })}
 
       {/* === JAM RANKINGS === */}
       {jams
