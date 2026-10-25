@@ -160,6 +160,13 @@ export default function Home() {
               className="mt-10 flex flex-wrap gap-4 items-center animate-rise"
               style={{ animationDelay: "0.7s" }}
             >
+              <Link
+                href="/rankingi/"
+                className="btn-stamp inline-flex items-center gap-3 bg-paper text-ink px-7 py-4 font-display font-extrabold uppercase tracking-wide text-base md:text-lg border-[3px] border-ink shadow-stamp-rose"
+              >
+                <span>Rankingi</span>
+                <span aria-hidden className="text-xl">→</span>
+              </Link>
               <a
                 href={REGISTER_GENERAL_URL}
                 target="_blank"
