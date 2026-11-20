@@ -131,13 +131,13 @@ export default function Home() {
 
             <h1 className="mt-6 font-display font-black leading-[0.82] tracking-[-0.03em] text-ink">
               <span
-                className="block text-[14vw] md:text-[10vw] lg:text-[9rem] animate-rise"
+                className="block text-[min(9rem,10.6vw_-_5px)] md:text-[10.6vw_-_8.5px] lg:text-[min(9rem,10.6vw_-_8px)] animate-rise"
                 style={{ animationDelay: "0.15s" }}
               >
                 BITWY
               </span>
               <span
-                className="block text-[14vw] md:text-[10vw] lg:text-[9rem] outlined-text animate-rise"
+                className="block text-[min(9rem,10.6vw_-_5px)] md:text-[10.6vw_-_8.5px] lg:text-[min(9rem,10.6vw_-_8px)] outlined-text animate-rise"
                 style={{ animationDelay: "0.3s" }}
               >
                 DUBBINGOWE
